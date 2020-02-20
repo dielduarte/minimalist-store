@@ -1,3 +1,5 @@
+a minimalist store using as maximum as possible of native object features + Proxy
+
 ## Usage Example
 
 ```js
