@@ -18,7 +18,7 @@ const model = createModel(store);
 // randomly generating a new `age` value each 400ms, just to test
 
 setInterval(() => {
-  model.set = { name: 'Laryssa', age: Math.random() };
+  model.set = { age: Math.random() };
 }, 400);
 
 window.addEventListener(onChangeEventName, () => {
