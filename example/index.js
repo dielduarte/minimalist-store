@@ -1,8 +1,9 @@
-import createModel, { onChangeEventName } from 'minimalist-store';
+import createModel from 'minimalist-store';
 
 const store = {
   name: 'Diel',
   age: 10,
+  secondName: 'Duarte',
   get doubleAge() {
     return this.age * 2;
   }
@@ -11,9 +12,17 @@ const store = {
 const model = createModel(store);
 
 setInterval(() => {
-  model.set = { name: 'Laryssa', age: Math.random() };
+  model.set = { age: Math.random() };
 }, 400);
 
-window.addEventListener(onChangeEventName, () => {
-  console.log('new update >>>>', model, model.doubleAge);
+model.subscribe(['age'], () => {
+  console.log('AGE >>>', model.age);
 });
+
+model.subscribe(['name'], () => {
+  console.log('NAME >>>', model.age);
+});
+
+setInterval(() => {
+  model.set = { name: 'anything' };
+}, 3000);

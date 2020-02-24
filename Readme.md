@@ -3,7 +3,7 @@ a minimalist store using as maximum as possible of native object features + Prox
 ## Usage Example
 
 ```js
-import createModel, { onChangeEventName } from 'minimalist-store';
+import createModel from 'minimalist-store';
 
 const store = {
   name: 'Diel',
@@ -16,13 +16,15 @@ const store = {
 const model = createModel(store);
 
 // randomly generating a new `age` value each 400ms, just to test
-
 setInterval(() => {
   model.set = { age: Math.random() };
 }, 400);
 
-window.addEventListener(onChangeEventName, () => {
-  console.log('new update >>>>', model, model.doubleAge);
+// add a subscribe by fields that you wanna do something when updated
+// subscribe can be used multiple times, 
+// passing a list of fields to watch
+model.subscribe(['age'], () => {
+  console.log('new change >>>', model.doubleAge);
 });
 
 ```
